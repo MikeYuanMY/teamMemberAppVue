@@ -155,7 +155,33 @@ export default {
   },
   methods: {
     register() {
-      console.log(this.registerInfo.password || true); // return falsy for "" after deleting
+      const {
+        username,
+        firstName,
+        lastName,
+        email,
+        password,
+        password2
+      } = this.registerInfo;
+
+      // validation here
+      console.log("Username", this.registerInfo.username);
+      Accounts.createUser(
+        {
+          username: username,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          password: password
+        },
+        error => {
+          if (error) {
+            console.log("Error", error.reason);
+          } else {
+            this.$router.push({ name: "personal" });
+          }
+        }
+      );
     }
   }
 };

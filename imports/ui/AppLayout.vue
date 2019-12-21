@@ -1,6 +1,12 @@
 <template>
-  <div class="app-layout">
-    <router-view></router-view>
+  <div id="page-container" class="side-scroll header-navbar-fixed">
+    <header></header>
+
+    <div class="app-layout">
+      <main id="main-container">
+        <router-view></router-view>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -11,5 +17,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

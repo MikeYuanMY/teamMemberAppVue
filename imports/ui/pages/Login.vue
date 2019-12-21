@@ -3,9 +3,7 @@
     <h1>Login Page</h1>
     <div class="content overflow-hidden">
       <div class="row">
-        <div
-          class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4"
-        >
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
           <!-- Login Block -->
           <div class="block block-themed animated fadeIn">
             <div class="block-header bg-primary">
@@ -20,7 +18,7 @@
                     data-placement="left"
                     title="New Account"
                   >
-                    <i class="si si-plus"></i>
+                    <i class="fa fa-key"></i>
                   </a>
                 </li>
               </ul>
@@ -28,7 +26,7 @@
             </div>
             <div class="block-content block-content-full block-content-narrow">
               <!-- Login Title -->
-              <h1 class="h2 font-w600 push-30-t push-5">OneUI</h1>
+              <h1 class="h2 font-w600 push-30-t push-5">TeamMemberApp</h1>
               <p>Welcome, please login.</p>
               <!-- END Login Title -->
 
@@ -42,7 +40,7 @@
               >
                 <div class="form-group">
                   <div class="col-xs-12">
-                    <div class="form-material form-material-primary ">
+                    <div class="form-material form-material-primary">
                       <input
                         class="form-control"
                         type="text"
@@ -56,7 +54,7 @@
                 </div>
                 <div class="form-group">
                   <div class="col-xs-12">
-                    <div class="form-material form-material-primary ">
+                    <div class="form-material form-material-primary">
                       <input
                         class="form-control"
                         type="password"
@@ -71,23 +69,15 @@
                 <div class="form-group">
                   <div class="col-xs-12">
                     <label class="css-input switch switch-sm switch-primary">
-                      <input
-                        type="checkbox"
-                        id="login-remember-me"
-                        name="login-remember-me"
-                      />
+                      <input type="checkbox" id="login-remember-me" name="login-remember-me" />
                       <span></span> Remember Me?
                     </label>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-xs-12 col-sm-6 col-md-4">
-                    <button
-                      class="btn btn-block btn-primary"
-                      type="submit"
-                      @click.prevent="login"
-                    >
-                      <i class="si si-login pull-right"></i> Log in
+                    <button class="btn btn-block btn-primary" type="submit" @click.prevent="login">
+                      <i class="fa fa-sign-in pull-right"></i> Log in
                     </button>
                   </div>
                 </div>
@@ -116,9 +106,9 @@ export default {
     return { loginInfo: {} };
   },
   mounted() {
-    let appScript = document.createElement("script");
-    appScript.setAttribute("src", "/assets/js/app.js");
-    document.head.appendChild(appScript);
+    // let appScript = document.createElement("script");
+    // appScript.setAttribute("src", "/assets/js/app.js");
+    // document.head.appendChild(appScript);
   },
   updated() {
     // let loginValidationScript = document.createElement("script");
@@ -128,10 +118,17 @@ export default {
     // );
     // document.head.appendChild(loginValidationScript);
   },
+  destroyed() {},
   methods: {
     login() {
       const { userName, password } = this.loginInfo;
-      console.log("Login Method called", userName, password);
+      Meteor.loginWithPassword(userName, password, error => {
+        if (error) {
+          return swal("Login Error", error.reason, "error");
+        } else {
+          this.$router.push({ name: "personal" });
+        }
+      });
 
       // uese meteor login with password to log in
 
