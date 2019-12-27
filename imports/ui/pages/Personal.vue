@@ -90,6 +90,9 @@
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <h2>team memeber list</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -107,7 +110,8 @@ export default {
         username: meteorUser.username,
         firstName: meteorUser.profile.firstName,
         lastName: meteorUser.profile.lastName,
-        email: meteorUser.emails[0].address
+        // return email if user has email else null
+        email: meteorUser.emails[0] ? meteorUser.emails[0].address : null
       };
 
       return user;
