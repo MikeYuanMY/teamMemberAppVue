@@ -26,9 +26,9 @@
                       v-model="currentUser.username"
                     />
                     <label for="contact2-email">Username</label>
-                    <span class="input-group-addon"
-                      ><i class="fa fa-user"></i
-                    ></span>
+                    <span class="input-group-addon">
+                      <i class="fa fa-user"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -72,9 +72,9 @@
                       v-model="currentUser.email"
                     />
                     <label for="contact2-email">Email</label>
-                    <span class="input-group-addon"
-                      ><i class="fa fa-envelope-o"></i
-                    ></span>
+                    <span class="input-group-addon">
+                      <i class="fa fa-envelope-o"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -118,10 +118,7 @@ export default {
     }
   },
 
-  methods: {
-    // declare method to update user
-    // need to define the meteor method
-  }
+  methods: {}
 };
 </script>
 
