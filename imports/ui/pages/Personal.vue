@@ -118,7 +118,9 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    //testing
+  }
 };
 </script>
 
