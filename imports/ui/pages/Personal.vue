@@ -120,6 +120,7 @@ export default {
 
   methods: {
     //testing
+    // how to search issue number in the commit message
   }
 };
 </script>
