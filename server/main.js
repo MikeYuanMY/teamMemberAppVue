@@ -1,6 +1,6 @@
 //import { Accounts } from "meteor/accounts-base";
 import { Meteor } from "meteor/meteor";
-
+import "/imports/api/user/UserMethods.js";
 Accounts.onCreateUser(function(options, user) {
   if (!user.services.facebook) {
     console.log("User Param", user);

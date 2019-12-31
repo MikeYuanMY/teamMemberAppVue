@@ -2,7 +2,7 @@
   <div class="personal">
     <h1>Personal</h1>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" v-if="currentUser">
         <div class="block block-themed">
           <div class="block-header bg-info">
             <h3 class="block-title">Profile</h3>
@@ -12,7 +12,7 @@
               class="form-horizontal push-10-t push-10"
               action="base_forms_premade.html"
               method="post"
-              onsubmit="return false;"
+              @submit.prevent="updateUser"
             >
               <div class="form-group">
                 <div class="col-xs-12">
@@ -105,22 +105,31 @@ export default {
     },
     currentUser() {
       const meteorUser = Meteor.user();
-      // get custom user object
-      const user = {
-        username: meteorUser.username,
-        firstName: meteorUser.profile.firstName,
-        lastName: meteorUser.profile.lastName,
-        // return email if user has email else null
-        email: meteorUser.emails[0] ? meteorUser.emails[0].address : null
-      };
-
-      return user;
+      // return custom user object
+      return meteorUser
+        ? {
+            userId: meteorUser._id, // extract userId for update
+            username: meteorUser.username,
+            firstName: meteorUser.profile.firstName,
+            lastName: meteorUser.profile.lastName,
+            // return email if user has email else null
+            email: meteorUser.emails[0] ? meteorUser.emails[0].address : null
+          }
+        : null;
     }
   },
 
   methods: {
-    //testing
-    // how to search issue number in the commit message
+    updateUser: function() {
+      console.log("updateUser", this.currentUser);
+      Meteor.call("account.update", this.currentUser, error => {
+        if (error) {
+          swal("Error", error.reason, "error");
+        } else {
+          swal("User Updated", "Your profile has been updated", "success");
+        }
+      });
+    }
   }
 };
 </script>
