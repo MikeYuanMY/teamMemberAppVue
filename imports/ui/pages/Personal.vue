@@ -104,7 +104,6 @@ export default {
       user: {}
     },
     currentUser() {
-      //async process here?
       const meteorUser = Meteor.user();
       // return custom user object if meteor user is available
       return meteorUser
