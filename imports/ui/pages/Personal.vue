@@ -104,15 +104,15 @@ export default {
       user: {}
     },
     currentUser() {
+      //async process here?
       const meteorUser = Meteor.user();
-      // return custom user object
+      // return custom user object if meteor user is available
       return meteorUser
         ? {
             userId: meteorUser._id, // extract userId for update
             username: meteorUser.username,
             firstName: meteorUser.profile.firstName,
             lastName: meteorUser.profile.lastName,
-            // return email if user has email else null
             email: meteorUser.emails[0] ? meteorUser.emails[0].address : null
           }
         : null;
