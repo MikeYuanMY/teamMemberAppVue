@@ -45,7 +45,7 @@
        <div v-if="!$subReady.teams">Loading...</div>
 
         <ul>
-            <li v-for="team in teams" :key='team._id'>{{team.name}} - {{team.descrption}}</li>
+            <li v-for="team in teams" :key='team._id'><a>{{team.name}} - {{team.descrption}}</a></li>
         </ul>
     
     </div>
