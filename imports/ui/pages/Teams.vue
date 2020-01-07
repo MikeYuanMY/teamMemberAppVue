@@ -9,7 +9,7 @@
                         <h3 class="block-title">Create New Team</h3>
                     </div>
                     <div class="block-content block-content-narrow">
-                        <form action="base_forms_elements_modern.html" class="teamInsertForm form-horizontal push-10-t"
+                        <form class="teamInsertForm form-horizontal push-10-t"
                               method="post" onsubmit="return false;">
                             <div class="form-group">
                                 <div class="col-sm-9">
@@ -91,6 +91,7 @@
                 Meteor.call('teams.insert', this.newTeamInfo, function (error, success) {
                     if (error) {
                         console.log('error', error);
+                        swal("Error", error.reason, "error");
                     }
                     if (success) {
                         swal("Success", "New Team Added", "success");
