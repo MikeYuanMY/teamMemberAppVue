@@ -87,7 +87,7 @@
         methods: {
             createTeam() {
 
-                const {name, description} = this.newTeamInfo;
+                // const {name, description} = this.newTeamInfo;
                 Meteor.call('teams.insert', this.newTeamInfo, function (error, success) {
                     if (error) {
                         console.log('error', error);
