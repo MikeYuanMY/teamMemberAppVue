@@ -61,15 +61,32 @@
 				newTeamInfo: {}
 			};
 		},
-		meteor: {
-			$subscribe: {
-				"teams": []
-			},
-			teams() {
-				return Teams.find()
-			}
+		// meteor: {
+		// 	$subscribe: {
+		// 		"teams": []
+		// 	},
+		// 	teams() {
+		// 		return Teams.find({}, { sort: { createdAt: -1 } }); //newly created first
+		// 	}
 
+		created() {
+			this.$subscribe('teams', () => [])
 		},
+		computed: {
+			teams() {
+				return this.$autorun(() => Teams.find({}, { sort: { createdAt: -1 } }))
+			}
+		},
+
+		// },
+		// created() {
+		// 	this.$subscribe('teams');
+		// },
+		// computed: {
+		// 	teams() {
+		// 		return this.$autorun(() => Teams.find({}))
+		// 	}
+		// },
 		methods: {
 			createTeam() {
 
