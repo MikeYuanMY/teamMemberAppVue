@@ -9,7 +9,7 @@
                         <h3 class="block-title">Create New Team</h3>
                     </div>
                     <div class="block-content block-content-narrow">
-                        <form action="base_forms_elements_modern.html" class="teamInsertForm form-horizontal push-10-t"
+                        <form class="teamInsertForm form-horizontal push-10-t"
                               method="post" onsubmit="return false;">
                             <div class="form-group">
                                 <div class="col-sm-9">
@@ -67,40 +67,31 @@
                 newTeamInfo: {}
             };
         },
-        // meteor: {
-        // 	$subscribe: {
-        // 		"teams": []
-        // 	},
-        // 	teams() {
-        // 		return Teams.find({}, { sort: { createdAt: -1 } }); //newly created first
-        // 	}
-
-        created() {
-            this.$subscribe('teams', () => [])
-        },
-        computed: {
+        meteor: {
+            $subscribe: {
+                "teams": [] // empty list as params
+            },
             teams() {
-                return this.$autorun(() => Teams.find({}, {sort: {createdAt: -1}}))
+                return Teams.find({}, {sort: {createdAt: -1}}); //newly created first
             }
         },
 
-        // },
-        // created() {
-        // 	this.$subscribe('teams');
-        // },
-        // computed: {
-        // 	teams() {
-        // 		return this.$autorun(() => Teams.find({}))
-        // 	}
-        // },
+
+        computed: {
+            teams() {
+
+                return Teams.find({}, {sort: {createdAt: -1}});
+            }
+        },
+
         methods: {
             createTeam() {
 
-                console.log("createTeam Name and Description", this.newTeamInfo.name, this.newTeamInfo.description);
-                const {name, description} = this.newTeamInfo;
+                // const {name, description} = this.newTeamInfo;
                 Meteor.call('teams.insert', this.newTeamInfo, function (error, success) {
                     if (error) {
                         console.log('error', error);
+                        swal("Error", error.reason, "error");
                     }
                     if (success) {
                         swal("Success", "New Team Added", "success");
@@ -111,7 +102,7 @@
             }
         }
 
-    }
+    };
 </script>
 
 <style>
