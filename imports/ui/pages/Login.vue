@@ -9,16 +9,11 @@
                         <div class="block-header bg-primary">
                             <ul class="block-options">
                                 <li>
-                                    <a href="base_pages_reminder.html">Forgot Password?</a>
+                                    <a>Forgot Password?</a>
                                 </li>
                                 <li>
-                                    <a
-                                            href="base_pages_register.html"
-                                            data-toggle="tooltip"
-                                            data-placement="left"
-                                            title="New Account"
-                                    >
-                                        <i class="fa fa-key"></i>
+                                    <a data-toggle="tooltip" data-placement="left" title="New Account">
+                                        <i class="fa fa-key"/>
                                     </a>
                                 </li>
                             </ul>
@@ -77,7 +72,7 @@
                                 <div class="form-group">
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <button class="btn btn-block btn-primary" type="submit" @click.prevent="login">
-                                            <i class="fa fa-sign-in pull-right"></i> Log in
+                                            <i class="fa fa-sign-in pull-right"/> Log in
                                         </button>
                                     </div>
                                 </div>
@@ -106,23 +101,15 @@
             return {loginInfo: {}};
         },
         mounted() {
-            // let appScript = document.createElement("script");
-            // appScript.setAttribute("src", "/assets/js/app.js");
-            // document.head.appendChild(appScript);
+
         },
         updated() {
-            // let loginValidationScript = document.createElement("script");
-            // loginValidationScript.setAttribute(
-            //   "src",
-            //   "/assets/js/pages/base_pages_login.js"
-            // );
-            // document.head.appendChild(loginValidationScript);
+
         },
         destroyed() {
         },
         methods: {
             login() {
-                console.log("log in");
                 const {userName, password} = this.loginInfo;
                 Meteor.loginWithPassword(userName, password, error => {
                     if (error) {
@@ -132,12 +119,11 @@
                     }
                 });
 
-                // uese meteor login with password to log in
-
-                // sweet alert if faile and redirect if success
             }
         }
     };
 </script>
 
-<style></style>
+<style>
+
+</style>
